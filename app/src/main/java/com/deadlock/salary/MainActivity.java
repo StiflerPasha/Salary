@@ -1,12 +1,14 @@
 package com.deadlock.salary;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -23,9 +25,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Calendar calendar = Calendar.getInstance();
 
+    SharedPreferences sp;
+
     int oneSalary, onePart, oneNight, oneExtra, oneFood,
             nSalary, nPart, nNight, nExtra, nFood,
             sumSalary, sumPart, sumNight, sumExtra, sumFood, sumBounty, sumCategory;
+
+    final String MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+    final String SAVED_SALARY = "saved_salary";
+    final String SAVED_PART = "saved_part";
+    final String SAVED_NIGHT = "saved_night";
+    final String SAVED_EXTRA = "saved_extra";
 
 
     @SuppressLint("SetTextI18n")
@@ -60,11 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         plusNight = (ImageButton) findViewById(R.id.plusNight);
         plusExtra = (ImageButton) findViewById(R.id.plusExtra);
 
-        nSalary = 15;
-        nPart = 0;
-        nNight = 0;
-        nExtra = 0;
-        nFood = nSalary + nPart;
+        loadResult();
 
         oneSalary = 1100;
         onePart = 1200;
@@ -80,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sumBounty = 9500;
         sumCategory = 4000;
 
-        month.setText(calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH));
+        month.setText(MONTH);
         finishSumSalary.setText(finishSalary());
 
         numSalary.setText(Integer.toString(nSalary));
@@ -170,8 +176,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 extra.setText(Integer.toString(sumExtra));
                 finishSumSalary.setText(finishSalary());
                 break;
-
         }
+        saveResult();
+    }
+
+    public void saveResult() {
+        sp = getSharedPreferences(MONTH, MODE_PRIVATE);
+        Editor ed = sp.edit();
+        ed.putString(SAVED_SALARY, numSalary.getText().toString());
+        ed.putString(SAVED_PART, numPart.getText().toString());
+        ed.putString(SAVED_NIGHT, numNight.getText().toString());
+        ed.putString(SAVED_EXTRA, numExtra.getText().toString());
+        ed.commit();
+    }
+
+    public void loadResult() {
+        sp = getSharedPreferences(MONTH, MODE_PRIVATE);
+        nSalary = Integer.parseInt(sp.getString(SAVED_SALARY, "15"));
+        nPart = Integer.parseInt(sp.getString(SAVED_PART, "0"));
+        nNight = Integer.parseInt(sp.getString(SAVED_NIGHT, "0"));
+        nExtra = Integer.parseInt(sp.getString(SAVED_EXTRA, "0"));
+        nFood = nSalary + nPart;
     }
 
     public String finishSalary() {
@@ -179,7 +204,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sumFood + sumBounty + sumCategory);
     }
 
-  /*  public void checkZero(int number, Button button) {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveResult();
+    }
+
+    /*  public void checkZero(int number, Button button) {
         if (number == 0) {
             button.setVisibility(View.INVISIBLE);
         } else {
