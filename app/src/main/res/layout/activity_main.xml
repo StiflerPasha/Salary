@@ -34,7 +34,7 @@
         android:fontFamily="@font/eater"
         android:text="Req. Days"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
@@ -47,7 +47,7 @@
         android:fontFamily="@font/eater"
         android:text="Part-time"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -60,7 +60,7 @@
         android:fontFamily="@font/eater"
         android:text="Night Sh."
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
@@ -73,7 +73,7 @@
         android:fontFamily="@font/eater"
         android:text="Ex. Hours"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
@@ -86,7 +86,7 @@
         android:fontFamily="@font/eater"
         android:text="On Food"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
@@ -99,7 +99,7 @@
         android:fontFamily="@font/eater"
         android:text="Bounty"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
@@ -112,7 +112,7 @@
         android:fontFamily="@font/eater"
         android:text="Category"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
@@ -141,13 +141,6 @@
         app:layout_constraintGuide_begin="74dp" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="112dp" />
-
-    <android.support.constraint.Guideline
         android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -172,7 +165,7 @@
         android:fontFamily="@font/bungee_shade"
         android:text="15"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView27"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +180,7 @@
         android:fontFamily="@font/bungee_shade"
         android:text="11"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/part"
         app:layout_constraintEnd_toEndOf="@+id/numSalary"
@@ -201,7 +194,7 @@
         android:fontFamily="@font/bungee_shade"
         android:text="3"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/night"
         app:layout_constraintEnd_toEndOf="@+id/numSalary"
@@ -215,7 +208,7 @@
         android:fontFamily="@font/bungee_shade"
         android:text="5"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/extra"
         app:layout_constraintEnd_toEndOf="@+id/numSalary"
@@ -229,7 +222,7 @@
         android:fontFamily="@font/bungee_shade"
         android:text="26"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/food"
         app:layout_constraintEnd_toEndOf="@+id/numSalary"
@@ -245,7 +238,7 @@
         android:fontFamily="@font/eater"
         android:text="tv"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView27"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="@+id/guideline9" />
@@ -257,7 +250,7 @@
         android:fontFamily="@font/eater"
         android:text="tv"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -269,7 +262,7 @@
         android:fontFamily="@font/eater"
         android:text="tv"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView29"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -281,7 +274,7 @@
         android:fontFamily="@font/eater"
         android:text="tv"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView30"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -293,7 +286,7 @@
         android:fontFamily="@font/eater"
         android:text="tv"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -305,7 +298,7 @@
         android:fontFamily="@font/eater"
         android:text="9500"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -318,7 +311,7 @@
         android:text="4000"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView33"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
