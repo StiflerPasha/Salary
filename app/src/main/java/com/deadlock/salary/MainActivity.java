@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public String finishSalary() {
         return Integer.toString(sumSalary + sumPart + sumNight + sumExtra +
-                sumFood + sumBounty + sumCategory);
+                sumFood + sumBounty + sumCategory )  + " rub";
     }
 
     @Override

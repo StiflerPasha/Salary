@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/tekstura_fon_cvet_chernyy"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="81dp">
 
@@ -13,13 +14,16 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="MONTH"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363" />
+        android:fontFamily="@font/irish_grover"
+        android:text="November"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/textView27"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView27"
@@ -27,9 +31,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:text="Clean Salary"
+        android:fontFamily="@font/eater"
+        android:text="Req. Days"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
@@ -38,10 +44,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:fontFamily="@font/eater"
         android:text="Part-time"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
@@ -50,10 +57,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Night Shifts"
+        android:fontFamily="@font/eater"
+        android:text="Night Sh."
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
@@ -62,10 +70,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Extra Hours"
+        android:fontFamily="@font/eater"
+        android:text="Ex. Hours"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
@@ -74,9 +83,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:fontFamily="@font/eater"
         android:text="On Food"
+        android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
@@ -85,9 +96,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:fontFamily="@font/eater"
         android:text="Bounty"
+        android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
@@ -96,9 +109,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:fontFamily="@font/eater"
         android:text="Category"
+        android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
@@ -106,38 +121,38 @@
         android:id="@+id/finishSumSalary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="SALARY"
-        android:textSize="24sp"
+        android:fontFamily="@font/rock_salt"
+        android:text="36500 rub"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline8"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="60dp" />
+        app:layout_constraintGuide_begin="74dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="120dp" />
+        app:layout_constraintGuide_end="112dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.36" />
+        app:layout_constraintGuide_percent="0.42" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline10"
@@ -150,22 +165,26 @@
         android:id="@+id/numSalary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/bungee_shade"
         android:text="15"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/salary"
+        app:layout_constraintBottom_toBottomOf="@+id/textView27"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/salary" />
+        app:layout_constraintTop_toTopOf="@+id/textView27" />
 
     <TextView
         android:id="@+id/numPart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee_shade"
         android:text="11"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -179,6 +198,7 @@
         android:id="@+id/numNight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee_shade"
         android:text="3"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -192,6 +212,7 @@
         android:id="@+id/numExtra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee_shade"
         android:text="5"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -205,6 +226,7 @@
         android:id="@+id/numFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee_shade"
         android:text="26"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -220,9 +242,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="TextView"
+        android:fontFamily="@font/eater"
+        android:text="tv"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView27"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="@+id/guideline9" />
@@ -231,9 +254,10 @@
         android:id="@+id/part"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:fontFamily="@font/eater"
+        android:text="tv"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -242,9 +266,10 @@
         android:id="@+id/night"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:fontFamily="@font/eater"
+        android:text="tv"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView29"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -253,9 +278,10 @@
         android:id="@+id/extra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:fontFamily="@font/eater"
+        android:text="tv"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView30"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -264,9 +290,10 @@
         android:id="@+id/food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:fontFamily="@font/eater"
+        android:text="tv"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -275,10 +302,10 @@
         android:id="@+id/bounty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/eater"
         android:text="9500"
         android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="italic"
+        android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -287,10 +314,11 @@
         android:id="@+id/category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/eater"
         android:text="4000"
         android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="italic"
+        android:textAllCaps="false"
+        android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView33"
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/salary" />
@@ -301,9 +329,10 @@
         android:layout_height="30dp"
         android:background="@android:color/transparent"
         android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="@+id/numExtra"
         app:layout_constraintEnd_toEndOf="@+id/plusSalary"
         app:layout_constraintTop_toTopOf="@+id/numExtra"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/icons8_plus_math_40" />
 
     <ImageButton
         android:id="@+id/plusNight"
@@ -311,9 +340,10 @@
         android:layout_height="30dp"
         android:background="@android:color/transparent"
         android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="@+id/numNight"
         app:layout_constraintEnd_toEndOf="@+id/plusSalary"
         app:layout_constraintTop_toTopOf="@+id/numNight"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/icons8_plus_math_40" />
 
     <ImageButton
         android:id="@+id/plusPart"
@@ -321,9 +351,10 @@
         android:layout_height="30dp"
         android:background="@android:color/transparent"
         android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="@+id/numPart"
         app:layout_constraintEnd_toEndOf="@+id/plusSalary"
         app:layout_constraintTop_toTopOf="@+id/numPart"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/icons8_plus_math_40" />
 
     <ImageButton
         android:id="@+id/plusSalary"
@@ -332,9 +363,10 @@
         android:layout_marginStart="8dp"
         android:background="@android:color/transparent"
         android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="@+id/numSalary"
         app:layout_constraintStart_toEndOf="@+id/numSalary"
         app:layout_constraintTop_toTopOf="@+id/numSalary"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/icons8_plus_math_40" />
 
     <ImageButton
         android:id="@+id/minusExtra"
@@ -342,9 +374,10 @@
         android:layout_height="30dp"
         android:background="@android:color/transparent"
         android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="@+id/numExtra"
         app:layout_constraintStart_toStartOf="@+id/minusSalary"
         app:layout_constraintTop_toTopOf="@+id/numExtra"
-        app:srcCompat="@drawable/ic_remove" />
+        app:srcCompat="@drawable/icons8_subtract_40" />
 
     <ImageButton
         android:id="@+id/minusNight"
@@ -352,9 +385,10 @@
         android:layout_height="30dp"
         android:background="@android:color/transparent"
         android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="@+id/numNight"
         app:layout_constraintStart_toStartOf="@+id/minusSalary"
         app:layout_constraintTop_toTopOf="@+id/numNight"
-        app:srcCompat="@drawable/ic_remove" />
+        app:srcCompat="@drawable/icons8_subtract_40" />
 
     <ImageButton
         android:id="@+id/minusPart"
@@ -362,9 +396,10 @@
         android:layout_height="30dp"
         android:background="@android:color/transparent"
         android:onClick="onClick"
+        android:src="@drawable/icons8_subtract_40"
+        app:layout_constraintBottom_toBottomOf="@+id/numPart"
         app:layout_constraintStart_toStartOf="@+id/minusSalary"
-        app:layout_constraintTop_toTopOf="@+id/numPart"
-        app:srcCompat="@drawable/ic_remove" />
+        app:layout_constraintTop_toTopOf="@+id/numPart" />
 
     <ImageButton
         android:id="@+id/minusSalary"
@@ -373,8 +408,9 @@
         android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
         android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="@+id/numSalary"
         app:layout_constraintEnd_toStartOf="@+id/numSalary"
         app:layout_constraintTop_toTopOf="@+id/numSalary"
-        app:srcCompat="@drawable/ic_remove" />
+        app:srcCompat="@drawable/icons8_subtract_40" />
 
 </android.support.constraint.ConstraintLayout>
