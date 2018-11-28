@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView salary, part, night, extra, food, bounty, category,
             numSalary, numNight, numPart, numExtra, numFood;
 
-    TextView month, finishSumSalary;
+    TextView month, finishSumSalary, salaryWord;
 
     Calendar calendar = Calendar.getInstance();
 
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         month = (TextView) findViewById(R.id.month);
         finishSumSalary = (TextView) findViewById(R.id.finishSumSalary);
+        salaryWord = (TextView) findViewById(R.id.salaryWord);
 
         minusSalary = (ImageButton) findViewById(R.id.minusSalary);
         minusPart = (ImageButton) findViewById(R.id.minusPart);
@@ -87,7 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sumCategory = 4000;
 
         month.setText(MONTH);
-        finishSumSalary.setText(finishSalary());
+        finishSumSalary.setText(finishSalary() + " rub");
+        salaryWord.setText(NumberToString.WordsRus(finishSalary()));
 
         numSalary.setText(Integer.toString(nSalary));
         numPart.setText(Integer.toString(nPart));
@@ -116,7 +118,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 numFood.setText(Integer.toString((nSalary + nPart)));
                 salary.setText(Integer.toString(sumSalary));
                 food.setText(Integer.toString(sumFood));
-                finishSumSalary.setText(finishSalary());
+                finishSumSalary.setText(finishSalary() + " rub");
+                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
             case (R.id.plusSalary):
                 nSalary += 1;
@@ -126,7 +129,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 numFood.setText(Integer.toString((nSalary + nPart)));
                 salary.setText(Integer.toString(sumSalary));
                 food.setText(Integer.toString(sumFood));
-                finishSumSalary.setText(finishSalary());
+                finishSumSalary.setText(finishSalary() + " rub");
+                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
             case (R.id.minusPart):
                 nPart -= 1;
@@ -136,7 +140,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 numFood.setText(Integer.toString((nSalary + nPart)));
                 part.setText(Integer.toString(sumPart));
                 food.setText(Integer.toString(sumFood));
-                finishSumSalary.setText(finishSalary());
+                finishSumSalary.setText(finishSalary() + " rub");
+                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
             case (R.id.plusPart):
                 nPart += 1;
@@ -146,35 +151,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 numFood.setText(Integer.toString((nSalary + nPart)));
                 part.setText(Integer.toString(sumPart));
                 food.setText(Integer.toString(sumFood));
-                finishSumSalary.setText(finishSalary());
+                finishSumSalary.setText(finishSalary() + " rub");
+                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
             case (R.id.minusNight):
                 nNight -= 1;
                 sumNight -= oneNight;
                 numNight.setText(Integer.toString(nNight));
                 night.setText(Integer.toString(sumNight));
-                finishSumSalary.setText(finishSalary());
+                finishSumSalary.setText(finishSalary() + " rub");
+                salaryWord.setText(NumberToString.WordsRus(finishSalary()) + " руб.");
                 break;
             case (R.id.plusNight):
                 nNight += 1;
                 sumNight += oneNight;
                 numNight.setText(Integer.toString(nNight));
                 night.setText(Integer.toString(sumNight));
-                finishSumSalary.setText(finishSalary());
+                finishSumSalary.setText(finishSalary() + " rub");
+                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
             case (R.id.minusExtra):
                 nExtra -= 1;
                 sumExtra -= oneExtra;
                 numExtra.setText(Integer.toString(nExtra));
                 extra.setText(Integer.toString(sumExtra));
-                finishSumSalary.setText(finishSalary());
+                finishSumSalary.setText(finishSalary() + " rub");
+                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
             case (R.id.plusExtra):
                 nExtra += 1;
                 sumExtra += oneExtra;
                 numExtra.setText(Integer.toString(nExtra));
                 extra.setText(Integer.toString(sumExtra));
-                finishSumSalary.setText(finishSalary());
+                finishSumSalary.setText(finishSalary() + " rub");
+                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
         }
         saveResult();
@@ -199,9 +209,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nFood = nSalary + nPart;
     }
 
-    public String finishSalary() {
-        return Integer.toString(sumSalary + sumPart + sumNight + sumExtra +
-                sumFood + sumBounty + sumCategory )  + " rub";
+    public int finishSalary() {
+        return sumSalary + sumPart + sumNight + sumExtra +
+                sumFood + sumBounty + sumCategory;
     }
 
     @Override
@@ -209,12 +219,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
         saveResult();
     }
-
-    /*  public void checkZero(int number, Button button) {
-        if (number == 0) {
-            button.setVisibility(View.INVISIBLE);
-        } else {
-            button.setVisibility(View.VISIBLE);
-        }
-    }*/
 }
