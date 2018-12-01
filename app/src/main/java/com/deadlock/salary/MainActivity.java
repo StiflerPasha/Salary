@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sumSalary, sumPart, sumNight, sumExtra, sumFood, sumBounty, sumCategory;
 
     final String MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+    //final String YEAR = calendar.getDisplayName(Calendar.YEAR, Calendar.LONG, Locale.ENGLISH);
     final String SAVED_SALARY = "saved_salary";
     final String SAVED_PART = "saved_part";
     final String SAVED_NIGHT = "saved_night";
@@ -111,15 +112,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.minusSalary):
-                nSalary -= 1;
-                sumSalary -= oneSalary;
-                sumFood -= oneFood;
-                numSalary.setText(Integer.toString(nSalary));
-                numFood.setText(Integer.toString((nSalary + nPart)));
-                salary.setText(Integer.toString(sumSalary));
-                food.setText(Integer.toString(sumFood));
-                finishSumSalary.setText(finishSalary() + " rub");
-                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
+                if (nSalary > 0) {
+                    nSalary -= 1;
+                    sumSalary -= oneSalary;
+                    sumFood -= oneFood;
+                    numSalary.setText(Integer.toString(nSalary));
+                    numFood.setText(Integer.toString((nSalary + nPart)));
+                    salary.setText(Integer.toString(sumSalary));
+                    food.setText(Integer.toString(sumFood));
+                    finishSumSalary.setText(finishSalary() + " rub");
+                    salaryWord.setText(NumberToString.WordsRus(finishSalary()));
+                }
                 break;
             case (R.id.plusSalary):
                 nSalary += 1;
@@ -133,15 +136,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
             case (R.id.minusPart):
-                nPart -= 1;
-                sumPart -= onePart;
-                sumFood -= oneFood;
-                numPart.setText(Integer.toString(nPart));
-                numFood.setText(Integer.toString((nSalary + nPart)));
-                part.setText(Integer.toString(sumPart));
-                food.setText(Integer.toString(sumFood));
-                finishSumSalary.setText(finishSalary() + " rub");
-                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
+                if (nPart > 0) {
+                    nPart -= 1;
+                    sumPart -= onePart;
+                    sumFood -= oneFood;
+                    numPart.setText(Integer.toString(nPart));
+                    numFood.setText(Integer.toString((nSalary + nPart)));
+                    part.setText(Integer.toString(sumPart));
+                    food.setText(Integer.toString(sumFood));
+                    finishSumSalary.setText(finishSalary() + " rub");
+                    salaryWord.setText(NumberToString.WordsRus(finishSalary()));
+                }
                 break;
             case (R.id.plusPart):
                 nPart += 1;
@@ -155,12 +160,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
             case (R.id.minusNight):
-                nNight -= 1;
-                sumNight -= oneNight;
-                numNight.setText(Integer.toString(nNight));
-                night.setText(Integer.toString(sumNight));
-                finishSumSalary.setText(finishSalary() + " rub");
-                salaryWord.setText(NumberToString.WordsRus(finishSalary()) + " руб.");
+                if (nNight > 0) {
+                    nNight -= 1;
+                    sumNight -= oneNight;
+                    numNight.setText(Integer.toString(nNight));
+                    night.setText(Integer.toString(sumNight));
+                    finishSumSalary.setText(finishSalary() + " rub");
+                    salaryWord.setText(NumberToString.WordsRus(finishSalary()));
+                }
                 break;
             case (R.id.plusNight):
                 nNight += 1;
@@ -171,12 +178,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
             case (R.id.minusExtra):
-                nExtra -= 1;
-                sumExtra -= oneExtra;
-                numExtra.setText(Integer.toString(nExtra));
-                extra.setText(Integer.toString(sumExtra));
-                finishSumSalary.setText(finishSalary() + " rub");
-                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
+                if (nExtra > 0) {
+                    nExtra -= 1;
+                    sumExtra -= oneExtra;
+                    numExtra.setText(Integer.toString(nExtra));
+                    extra.setText(Integer.toString(sumExtra));
+                    finishSumSalary.setText(finishSalary() + " rub");
+                    salaryWord.setText(NumberToString.WordsRus(finishSalary()));
+                }
                 break;
             case (R.id.plusExtra):
                 nExtra += 1;
