@@ -6,10 +6,12 @@ import android.content.SharedPreferences.Editor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -21,9 +23,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView salary, part, night, extra, food, bounty, category,
             numSalary, numNight, numPart, numExtra, numFood;
 
-    TextView month, finishSumSalary, salaryWord;
+    TextView monthTv, finishSumSalary, salaryWord;
+
+    //Button prevMonth, nextMonth;
 
     Calendar calendar = Calendar.getInstance();
+
+    //String month;
+    //String year;
 
     SharedPreferences sp;
 
@@ -32,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sumSalary, sumPart, sumNight, sumExtra, sumFood, sumBounty, sumCategory;
 
     final String MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
-    //final String YEAR = calendar.getDisplayName(Calendar.YEAR, Calendar.LONG, Locale.ENGLISH);
+    final int YEAR = calendar.get(Calendar.YEAR);
     final String SAVED_SALARY = "saved_salary";
     final String SAVED_PART = "saved_part";
     final String SAVED_NIGHT = "saved_night";
@@ -59,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         numExtra = (TextView) findViewById(R.id.numExtra);
         numFood = (TextView) findViewById(R.id.numFood);
 
-        month = (TextView) findViewById(R.id.month);
+        monthTv = (TextView) findViewById(R.id.month);
         finishSumSalary = (TextView) findViewById(R.id.finishSumSalary);
         salaryWord = (TextView) findViewById(R.id.salaryWord);
 
@@ -71,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         plusPart = (ImageButton) findViewById(R.id.plusPart);
         plusNight = (ImageButton) findViewById(R.id.plusNight);
         plusExtra = (ImageButton) findViewById(R.id.plusExtra);
+
+        //prevMonth = (Button) findViewById(R.id.prevMonth);
+        //nextMonth = (Button) findViewById(R.id.nextMonth);
 
         loadResult();
 
@@ -88,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sumBounty = 9500;
         sumCategory = 4000;
 
-        month.setText(MONTH);
+        monthTv.setText(MONTH);
         finishSumSalary.setText(finishSalary() + " rub");
         salaryWord.setText(NumberToString.WordsRus(finishSalary()));
 
@@ -124,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 }
                 break;
+
             case (R.id.plusSalary):
                 nSalary += 1;
                 sumSalary += oneSalary;
@@ -135,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finishSumSalary.setText(finishSalary() + " rub");
                 salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
+
             case (R.id.minusPart):
                 if (nPart > 0) {
                     nPart -= 1;
@@ -148,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 }
                 break;
+
             case (R.id.plusPart):
                 nPart += 1;
                 sumPart += onePart;
@@ -159,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finishSumSalary.setText(finishSalary() + " rub");
                 salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
+
             case (R.id.minusNight):
                 if (nNight > 0) {
                     nNight -= 1;
@@ -169,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 }
                 break;
+
             case (R.id.plusNight):
                 nNight += 1;
                 sumNight += oneNight;
@@ -177,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finishSumSalary.setText(finishSalary() + " rub");
                 salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
+
             case (R.id.minusExtra):
                 if (nExtra > 0) {
                     nExtra -= 1;
@@ -187,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 }
                 break;
+
             case (R.id.plusExtra):
                 nExtra += 1;
                 sumExtra += oneExtra;
@@ -195,12 +212,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finishSumSalary.setText(finishSalary() + " rub");
                 salaryWord.setText(NumberToString.WordsRus(finishSalary()));
                 break;
+
+            //case (R.id.prevMonth):
+            //    monthValue += 1;
+            //    monthTv.setText(month);
+            //    break;
+//
+            //case (R.id.nextMonth):
+            //    monthValue -= 1;
+            //    monthTv.setText(month);
+            //    break;
         }
         saveResult();
     }
 
     public void saveResult() {
-        sp = getSharedPreferences(MONTH, MODE_PRIVATE);
+        sp = getSharedPreferences(MONTH + YEAR, MODE_PRIVATE);
         Editor ed = sp.edit();
         ed.putString(SAVED_SALARY, numSalary.getText().toString());
         ed.putString(SAVED_PART, numPart.getText().toString());
@@ -210,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void loadResult() {
-        sp = getSharedPreferences(MONTH, MODE_PRIVATE);
+        sp = getSharedPreferences(MONTH + YEAR, MODE_PRIVATE);
         nSalary = Integer.parseInt(sp.getString(SAVED_SALARY, "15"));
         nPart = Integer.parseInt(sp.getString(SAVED_PART, "0"));
         nNight = Integer.parseInt(sp.getString(SAVED_NIGHT, "0"));

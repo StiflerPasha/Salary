@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFF8EB"
+    android:background="#fff5e1"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="81dp">
 
@@ -85,7 +85,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/work_rect"
         android:fontFamily="@font/audiowide"
-        android:text="Ex. Hours"
+        android:text="Ext. Hours"
         android:textAlignment="center"
         android:textColor="?android:attr/textColorHint"
         android:textSize="24sp"
@@ -135,6 +135,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/work_rect"
+        android:clickable="true"
         android:fontFamily="@font/audiowide"
         android:text="Category"
         android:textAlignment="center"
