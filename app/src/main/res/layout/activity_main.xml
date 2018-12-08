@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff5e1"
@@ -135,7 +136,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/work_rect"
-        android:clickable="true"
         android:fontFamily="@font/audiowide"
         android:text="Category"
         android:textAlignment="center"
@@ -528,30 +528,6 @@
         app:layout_constraintEnd_toEndOf="@+id/salary"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/textView27" />
-
-    <Button
-        android:id="@+id/prevMonth"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Pr"
-        android:textSize="8sp"
-        app:layout_constraintStart_toEndOf="@+id/month"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/nextMonth"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="N"
-        android:textSize="8sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/prevMonth"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/yearTv"

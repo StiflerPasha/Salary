@@ -3,18 +3,22 @@ package com.deadlock.salary;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.Calendar;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton minusSalary, minusPart, minusNight, minusExtra,
             plusSalary, plusPart, plusNight, plusExtra;
@@ -24,15 +28,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView yearTv, monthTv, finishSumSalary, salaryWord;
 
-    Button prevMonth, nextMonth;
+    View screen;
+
+    int oneSalary, onePart, oneNight, oneExtra, oneFood,
+            nSalary, nPart, nNight, nExtra, nFood,
+            sumSalary, sumPart, sumNight, sumExtra, sumFood, sumBounty, sumCategory;
 
     Calendar calendar = Calendar.getInstance();
 
     SharedPreferences sp;
 
-    int oneSalary, onePart, oneNight, oneExtra, oneFood,
-            nSalary, nPart, nNight, nExtra, nFood,
-            sumSalary, sumPart, sumNight, sumExtra, sumFood, sumBounty, sumCategory;
+    GestureDetector gestureDetector;
 
     String MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
     int YEAR = calendar.get(Calendar.YEAR);
@@ -43,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final String SAVED_EXTRA = "saved_extra";
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +60,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         yearTv.setText(Integer.toString(YEAR));
         monthTv.setText(MONTH);
 
-        changeMonthBtn();
         loadResult();
+
+        gestureDetector = initGestureDetector();
+
+        screen.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        });
+
+        screen.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            }
+        });
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -140,6 +159,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void addView() {
+        screen = (View) findViewById(R.id.screen);
+
         salary = (TextView) findViewById(R.id.salary);
         part = (TextView) findViewById(R.id.part);
         night = (TextView) findViewById(R.id.night);
@@ -168,39 +189,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         plusPart = (ImageButton) findViewById(R.id.plusPart);
         plusNight = (ImageButton) findViewById(R.id.plusNight);
         plusExtra = (ImageButton) findViewById(R.id.plusExtra);
-    }
-
-    public void changeMonthBtn() {
-        prevMonth = (Button) findViewById(R.id.prevMonth);
-        prevMonth.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                int a = 0;
-                a--;
-                calendar.add(Calendar.MONTH, a);
-                MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG,Locale.US);
-                YEAR = calendar.get(Calendar.YEAR);
-                monthTv.setText(MONTH);
-                yearTv.setText(Integer.toString(YEAR));
-                loadResult();
-            }
-        });
-        nextMonth = (Button) findViewById(R.id.nextMonth);
-        nextMonth.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                int a = 0;
-                a++;
-                calendar.add(Calendar.MONTH, a);
-                MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG,Locale.US);
-                YEAR = calendar.get(Calendar.YEAR);
-                monthTv.setText(MONTH);
-                yearTv.setText(Integer.toString(YEAR));
-                loadResult();
-            }
-        });
     }
 
     public void saveResult() {
@@ -266,5 +254,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public int finishSalary() {
         return sumSalary + sumPart + sumNight + sumExtra +
                 sumFood + sumBounty + sumCategory;
+    }
+
+    private GestureDetector initGestureDetector() {
+        return new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
+
+            private SwipeDetector detector = new SwipeDetector();
+
+            @SuppressLint("SetTextI18n")
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                                   float velocityY) {
+                try {
+                    if (detector.isSwipeDown(e1, e2, velocityY)) {
+                        return false;
+                    } else if (detector.isSwipeUp(e1, e2, velocityY)) {
+                        showToast("Up Swipe");
+                    } else if (detector.isSwipeRight(e1, e2, velocityX)) {
+                        int a = 0;
+                        a--;
+                        calendar.add(Calendar.MONTH, a);
+                        MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US);
+                        YEAR = calendar.get(Calendar.YEAR);
+                        monthTv.setText(MONTH);
+                        yearTv.setText(Integer.toString(YEAR));
+                        loadResult();
+                    } else if (detector.isSwipeLeft(e1, e2, velocityX)) {
+                        int a = 0;
+                        a++;
+                        calendar.add(Calendar.MONTH, a);
+                        MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US);
+                        YEAR = calendar.get(Calendar.YEAR);
+                        monthTv.setText(MONTH);
+                        yearTv.setText(Integer.toString(YEAR));
+                        loadResult();
+                    }
+                } catch (Exception e) {
+                } //for now, ignore
+                return false;
+            }
+
+            private void showToast(String phrase) {
+                Toast.makeText(getApplicationContext(), phrase, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
