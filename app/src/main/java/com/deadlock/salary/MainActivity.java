@@ -10,8 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.time.Month;
-import java.time.Year;
+
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -23,14 +22,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView salary, part, night, extra, food, bounty, category,
             numSalary, numNight, numPart, numExtra, numFood;
 
-    TextView monthTv, finishSumSalary, salaryWord;
+    TextView yearTv, monthTv, finishSumSalary, salaryWord;
 
-    //Button prevMonth, nextMonth;
+    Button prevMonth, nextMonth;
 
     Calendar calendar = Calendar.getInstance();
-
-    //String month;
-    //String year;
 
     SharedPreferences sp;
 
@@ -38,8 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             nSalary, nPart, nNight, nExtra, nFood,
             sumSalary, sumPart, sumNight, sumExtra, sumFood, sumBounty, sumCategory;
 
-    final String MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
-    final int YEAR = calendar.get(Calendar.YEAR);
+    String MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+    int YEAR = calendar.get(Calendar.YEAR);
+
     final String SAVED_SALARY = "saved_salary";
     final String SAVED_PART = "saved_part";
     final String SAVED_NIGHT = "saved_night";
@@ -52,6 +49,97 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        addView();
+
+        yearTv.setText(Integer.toString(YEAR));
+        monthTv.setText(MONTH);
+
+        changeMonthBtn();
+        loadResult();
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case (R.id.minusSalary):
+                if (nSalary > 0) {
+                    nSalary--;
+                    sumSalary -= oneSalary;
+                    sumFood -= oneFood;
+                    numSalary.setText(Integer.toString(nSalary));
+                    reSumCount();
+                }
+                break;
+
+            case (R.id.plusSalary):
+                nSalary++;
+                sumSalary += oneSalary;
+                sumFood += oneFood;
+                numSalary.setText(Integer.toString(nSalary));
+                reSumCount();
+                break;
+
+            case (R.id.minusPart):
+                if (nPart > 0) {
+                    nPart--;
+                    sumPart -= onePart;
+                    sumFood -= oneFood;
+                    numPart.setText(Integer.toString(nPart));
+                    part.setText(Integer.toString(sumPart));
+                    reSumCount();
+                }
+                break;
+
+            case (R.id.plusPart):
+                nPart++;
+                sumPart += onePart;
+                sumFood += oneFood;
+                numPart.setText(Integer.toString(nPart));
+                part.setText(Integer.toString(sumPart));
+                reSumCount();
+                break;
+
+            case (R.id.minusNight):
+                if (nNight > 0) {
+                    nNight--;
+                    sumNight -= oneNight;
+                    numNight.setText(Integer.toString(nNight));
+                    night.setText(Integer.toString(sumNight));
+                    reSumCount();
+                }
+                break;
+
+            case (R.id.plusNight):
+                nNight++;
+                sumNight += oneNight;
+                numNight.setText(Integer.toString(nNight));
+                night.setText(Integer.toString(sumNight));
+                reSumCount();
+                break;
+
+            case (R.id.minusExtra):
+                if (nExtra > 0) {
+                    nExtra--;
+                    sumExtra -= oneExtra;
+                    numExtra.setText(Integer.toString(nExtra));
+                    extra.setText(Integer.toString(sumExtra));
+                    reSumCount();
+                }
+                break;
+
+            case (R.id.plusExtra):
+                nExtra++;
+                sumExtra += oneExtra;
+                numExtra.setText(Integer.toString(nExtra));
+                extra.setText(Integer.toString(sumExtra));
+                reSumCount();
+                break;
+        }
+        saveResult();
+    }
+
+    public void addView() {
         salary = (TextView) findViewById(R.id.salary);
         part = (TextView) findViewById(R.id.part);
         night = (TextView) findViewById(R.id.night);
@@ -60,13 +148,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bounty = (TextView) findViewById(R.id.bounty);
         category = (TextView) findViewById(R.id.category);
 
+        yearTv = (TextView) findViewById(R.id.yearTv);
+        monthTv = (TextView) findViewById(R.id.month);
+
         numSalary = (TextView) findViewById(R.id.numSalary);
         numPart = (TextView) findViewById(R.id.numPart);
         numNight = (TextView) findViewById(R.id.numNight);
         numExtra = (TextView) findViewById(R.id.numExtra);
         numFood = (TextView) findViewById(R.id.numFood);
 
-        monthTv = (TextView) findViewById(R.id.month);
         finishSumSalary = (TextView) findViewById(R.id.finishSumSalary);
         salaryWord = (TextView) findViewById(R.id.salaryWord);
 
@@ -78,11 +168,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         plusPart = (ImageButton) findViewById(R.id.plusPart);
         plusNight = (ImageButton) findViewById(R.id.plusNight);
         plusExtra = (ImageButton) findViewById(R.id.plusExtra);
+    }
 
-        //prevMonth = (Button) findViewById(R.id.prevMonth);
-        //nextMonth = (Button) findViewById(R.id.nextMonth);
+    public void changeMonthBtn() {
+        prevMonth = (Button) findViewById(R.id.prevMonth);
+        prevMonth.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                int a = 0;
+                a--;
+                calendar.add(Calendar.MONTH, a);
+                MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG,Locale.US);
+                YEAR = calendar.get(Calendar.YEAR);
+                monthTv.setText(MONTH);
+                yearTv.setText(Integer.toString(YEAR));
+                loadResult();
+            }
+        });
+        nextMonth = (Button) findViewById(R.id.nextMonth);
+        nextMonth.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                int a = 0;
+                a++;
+                calendar.add(Calendar.MONTH, a);
+                MONTH = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG,Locale.US);
+                YEAR = calendar.get(Calendar.YEAR);
+                monthTv.setText(MONTH);
+                yearTv.setText(Integer.toString(YEAR));
+                loadResult();
+            }
+        });
+    }
 
-        loadResult();
+    public void saveResult() {
+        sp = getSharedPreferences(MONTH + YEAR, MODE_PRIVATE);
+        Editor ed = sp.edit();
+        ed.putString(SAVED_SALARY, numSalary.getText().toString());
+        ed.putString(SAVED_PART, numPart.getText().toString());
+        ed.putString(SAVED_NIGHT, numNight.getText().toString());
+        ed.putString(SAVED_EXTRA, numExtra.getText().toString());
+        ed.commit();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void loadResult() {
+        sp = getSharedPreferences(MONTH + YEAR, MODE_PRIVATE);
+        nSalary = Integer.parseInt(sp.getString(SAVED_SALARY, "15"));
+        nPart = Integer.parseInt(sp.getString(SAVED_PART, "0"));
+        nNight = Integer.parseInt(sp.getString(SAVED_NIGHT, "0"));
+        nExtra = Integer.parseInt(sp.getString(SAVED_EXTRA, "0"));
+        nFood = nSalary + nPart;
 
         oneSalary = 1100;
         onePart = 1200;
@@ -98,10 +236,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sumBounty = 9500;
         sumCategory = 4000;
 
-        monthTv.setText(MONTH);
-        finishSumSalary.setText(finishSalary() + " rub");
-        salaryWord.setText(NumberToString.WordsRus(finishSalary()));
-
         numSalary.setText(Integer.toString(nSalary));
         numPart.setText(Integer.toString(nPart));
         numNight.setText(Integer.toString(nNight));
@@ -115,144 +249,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         night.setText(Integer.toString(sumNight));
         extra.setText(Integer.toString(sumExtra));
         food.setText(Integer.toString(sumFood));
+
+        finishSumSalary.setText(finishSalary() + " rub");
+        salaryWord.setText(NumberToString.WordsRus(finishSalary()));
     }
 
     @SuppressLint("SetTextI18n")
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case (R.id.minusSalary):
-                if (nSalary > 0) {
-                    nSalary -= 1;
-                    sumSalary -= oneSalary;
-                    sumFood -= oneFood;
-                    numSalary.setText(Integer.toString(nSalary));
-                    numFood.setText(Integer.toString((nSalary + nPart)));
-                    salary.setText(Integer.toString(sumSalary));
-                    food.setText(Integer.toString(sumFood));
-                    finishSumSalary.setText(finishSalary() + " rub");
-                    salaryWord.setText(NumberToString.WordsRus(finishSalary()));
-                }
-                break;
-
-            case (R.id.plusSalary):
-                nSalary += 1;
-                sumSalary += oneSalary;
-                sumFood += oneFood;
-                numSalary.setText(Integer.toString(nSalary));
-                numFood.setText(Integer.toString((nSalary + nPart)));
-                salary.setText(Integer.toString(sumSalary));
-                food.setText(Integer.toString(sumFood));
-                finishSumSalary.setText(finishSalary() + " rub");
-                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
-                break;
-
-            case (R.id.minusPart):
-                if (nPart > 0) {
-                    nPart -= 1;
-                    sumPart -= onePart;
-                    sumFood -= oneFood;
-                    numPart.setText(Integer.toString(nPart));
-                    numFood.setText(Integer.toString((nSalary + nPart)));
-                    part.setText(Integer.toString(sumPart));
-                    food.setText(Integer.toString(sumFood));
-                    finishSumSalary.setText(finishSalary() + " rub");
-                    salaryWord.setText(NumberToString.WordsRus(finishSalary()));
-                }
-                break;
-
-            case (R.id.plusPart):
-                nPart += 1;
-                sumPart += onePart;
-                sumFood += oneFood;
-                numPart.setText(Integer.toString(nPart));
-                numFood.setText(Integer.toString((nSalary + nPart)));
-                part.setText(Integer.toString(sumPart));
-                food.setText(Integer.toString(sumFood));
-                finishSumSalary.setText(finishSalary() + " rub");
-                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
-                break;
-
-            case (R.id.minusNight):
-                if (nNight > 0) {
-                    nNight -= 1;
-                    sumNight -= oneNight;
-                    numNight.setText(Integer.toString(nNight));
-                    night.setText(Integer.toString(sumNight));
-                    finishSumSalary.setText(finishSalary() + " rub");
-                    salaryWord.setText(NumberToString.WordsRus(finishSalary()));
-                }
-                break;
-
-            case (R.id.plusNight):
-                nNight += 1;
-                sumNight += oneNight;
-                numNight.setText(Integer.toString(nNight));
-                night.setText(Integer.toString(sumNight));
-                finishSumSalary.setText(finishSalary() + " rub");
-                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
-                break;
-
-            case (R.id.minusExtra):
-                if (nExtra > 0) {
-                    nExtra -= 1;
-                    sumExtra -= oneExtra;
-                    numExtra.setText(Integer.toString(nExtra));
-                    extra.setText(Integer.toString(sumExtra));
-                    finishSumSalary.setText(finishSalary() + " rub");
-                    salaryWord.setText(NumberToString.WordsRus(finishSalary()));
-                }
-                break;
-
-            case (R.id.plusExtra):
-                nExtra += 1;
-                sumExtra += oneExtra;
-                numExtra.setText(Integer.toString(nExtra));
-                extra.setText(Integer.toString(sumExtra));
-                finishSumSalary.setText(finishSalary() + " rub");
-                salaryWord.setText(NumberToString.WordsRus(finishSalary()));
-                break;
-
-            //case (R.id.prevMonth):
-            //    monthValue += 1;
-            //    monthTv.setText(month);
-            //    break;
-//
-            //case (R.id.nextMonth):
-            //    monthValue -= 1;
-            //    monthTv.setText(month);
-            //    break;
-        }
-        saveResult();
-    }
-
-    public void saveResult() {
-        sp = getSharedPreferences(MONTH + YEAR, MODE_PRIVATE);
-        Editor ed = sp.edit();
-        ed.putString(SAVED_SALARY, numSalary.getText().toString());
-        ed.putString(SAVED_PART, numPart.getText().toString());
-        ed.putString(SAVED_NIGHT, numNight.getText().toString());
-        ed.putString(SAVED_EXTRA, numExtra.getText().toString());
-        ed.commit();
-    }
-
-    public void loadResult() {
-        sp = getSharedPreferences(MONTH + YEAR, MODE_PRIVATE);
-        nSalary = Integer.parseInt(sp.getString(SAVED_SALARY, "15"));
-        nPart = Integer.parseInt(sp.getString(SAVED_PART, "0"));
-        nNight = Integer.parseInt(sp.getString(SAVED_NIGHT, "0"));
-        nExtra = Integer.parseInt(sp.getString(SAVED_EXTRA, "0"));
-        nFood = nSalary + nPart;
+    public void reSumCount() {
+        numFood.setText(Integer.toString((nSalary + nPart)));
+        salary.setText(Integer.toString(sumSalary));
+        food.setText(Integer.toString(sumFood));
+        finishSumSalary.setText(finishSalary() + " rub");
+        salaryWord.setText(NumberToString.WordsRus(finishSalary()));
     }
 
     public int finishSalary() {
         return sumSalary + sumPart + sumNight + sumExtra +
                 sumFood + sumBounty + sumCategory;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        saveResult();
     }
 }
