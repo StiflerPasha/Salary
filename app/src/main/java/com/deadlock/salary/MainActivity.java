@@ -1,12 +1,16 @@
 package com.deadlock.salary;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -292,10 +296,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } //for now, ignore
                 return false;
             }
-
-            private void showToast(String phrase) {
-                Toast.makeText(getApplicationContext(), phrase, Toast.LENGTH_SHORT).show();
-            }
         });
+    }
+
+    private void showToast(String phrase) {
+        Toast.makeText(getApplicationContext(), phrase, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case (R.id.num2word):
+                Intent intent1 = new Intent(this, Num2word.class);
+                this.startActivity(intent1);
+                break;
+            case (R.id.settings):
+                showToast("Settings clicked");
+                break;
+            case (R.id.exit):
+                showToast("Exit clicked");
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
