@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Regular payments (rub/day)">
+    </PreferenceCategory>
+
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="1100"
+        android:inputType="number"
+        android:key="reqDaySet"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Изменить коэфициент"
+        android:textSize="18sp"
+        android:title="Required day" />
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="1200"
+        android:inputType="number"
+        android:key="addDaySet"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Изменить коэфициент"
+        android:textSize="18sp"
+        android:title="Additional day" />
+
+
+    <PreferenceCategory
+        android:title="Additional payments">
+    </PreferenceCategory>
+
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="1400"
+        android:inputType="number"
+        android:key="nightWorkSet"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Изменить коэфициент"
+        android:textSize="18sp"
+        android:title="Night work" />
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="150"
+        android:inputType="number"
+        android:key="extHourSet"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Изменить коэфициент"
+        android:textSize="18sp"
+        android:title="Extra hours" />
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="300"
+        android:inputType="number"
+        android:key="onFoodSet"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Изменить коэфициент"
+        android:textSize="18sp"
+        android:title="On food" />
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="9500"
+        android:inputType="number"
+        android:key="bountySet"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Изменить коэфициент"
+        android:textSize="18sp"
+        android:title="Bounty" />
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="4000"
+        android:inputType="number"
+        android:key="categorySet"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Изменить коэфициент"
+        android:textSize="18sp"
+        android:title="Category" />
+
+</PreferenceScreen>

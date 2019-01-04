@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Calendar calendar = Calendar.getInstance();
 
-    SharedPreferences sp;
+    SharedPreferences sp, spSet;
 
     GestureDetector gestureDetector;
 
@@ -214,19 +215,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nExtra = Integer.parseInt(sp.getString(SAVED_EXTRA, "0"));
         nFood = nSalary + nPart;
 
-        oneSalary = 1100;
-        onePart = 1200;
-        oneNight = 1400;
-        oneExtra = 150;
-        oneFood = 300;
+        spSet = PreferenceManager.getDefaultSharedPreferences(this);
+        oneSalary = Integer.parseInt(spSet.getString("reqDaySet", "1100"));
+        onePart = Integer.parseInt(spSet.getString("addDaySet", "1200"));
+        oneNight = Integer.parseInt(spSet.getString("nightWorkSet", "1400"));
+        oneExtra = Integer.parseInt(spSet.getString("extHourSet", "150"));
+        oneFood = Integer.parseInt(spSet.getString("onFoodSet", "300"));
+        sumBounty = Integer.parseInt(spSet.getString("bountySet", "9500"));
+        sumCategory = Integer.parseInt(spSet.getString("categorySet", "4000"));
 
         sumSalary = nSalary * oneSalary;
         sumPart = nPart * onePart;
         sumNight = nNight * oneNight;
         sumExtra = nExtra * oneExtra;
         sumFood = nFood * oneFood;
-        sumBounty = 9500;
-        sumCategory = 4000;
 
         numSalary.setText(Integer.toString(nSalary));
         numPart.setText(Integer.toString(nPart));
@@ -318,10 +320,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.startActivity(intent1);
                 break;
             case (R.id.settings):
-                showToast("Settings clicked");
+                Intent intent2 = new Intent(this, PrefActivity.class);
+                this.startActivity(intent2);
                 break;
-            case (R.id.exit):
-                showToast("Exit clicked");
         }
 
         return super.onOptionsItemSelected(item);
