@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Calendar calendar = Calendar.getInstance();
 
-    SharedPreferences sp, spSet;
+    SharedPreferences spMonth, spSet;
 
     GestureDetector gestureDetector;
 
@@ -80,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+    }
+
+    protected void onResume() {
+        loadResult();
+        super.onResume();
     }
 
     @SuppressLint("SetTextI18n")
@@ -197,22 +202,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void saveResult() {
-        sp = getSharedPreferences(MONTH + YEAR, MODE_PRIVATE);
-        Editor ed = sp.edit();
+        Editor ed = spMonth.edit();
         ed.putString(SAVED_SALARY, numSalary.getText().toString());
         ed.putString(SAVED_PART, numPart.getText().toString());
         ed.putString(SAVED_NIGHT, numNight.getText().toString());
         ed.putString(SAVED_EXTRA, numExtra.getText().toString());
-        ed.commit();
+        ed.apply();
     }
 
     @SuppressLint("SetTextI18n")
     public void loadResult() {
-        sp = getSharedPreferences(MONTH + YEAR, MODE_PRIVATE);
-        nSalary = Integer.parseInt(sp.getString(SAVED_SALARY, "15"));
-        nPart = Integer.parseInt(sp.getString(SAVED_PART, "0"));
-        nNight = Integer.parseInt(sp.getString(SAVED_NIGHT, "0"));
-        nExtra = Integer.parseInt(sp.getString(SAVED_EXTRA, "0"));
+        spMonth = getSharedPreferences(MONTH + YEAR, MODE_PRIVATE);
+        nSalary = Integer.parseInt(spMonth.getString(SAVED_SALARY, "15"));
+        nPart = Integer.parseInt(spMonth.getString(SAVED_PART, "0"));
+        nNight = Integer.parseInt(spMonth.getString(SAVED_NIGHT, "0"));
+        nExtra = Integer.parseInt(spMonth.getString(SAVED_EXTRA, "0"));
         nFood = nSalary + nPart;
 
         spSet = PreferenceManager.getDefaultSharedPreferences(this);
@@ -295,7 +299,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         loadResult();
                     }
                 } catch (Exception e) {
-                } //for now, ignore
+                    showToast("Error: " + e);
+                }
                 return false;
             }
         });
